@@ -11,7 +11,7 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link " href="{{ route('category.index') }}">
                     <i class="bi bi-basket2"></i>
                     <span>category</span>
                 </a>
