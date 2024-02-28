@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -40,7 +42,7 @@ class CategoryController extends Controller
         //melakukan validasi data
         $this->validate($request,[
             'name' => 'required|max:100',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2-48'
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         //melakukan upload image
@@ -50,6 +52,16 @@ class CategoryController extends Controller
         //fungsi hashName untuk generate nama yang unik
         //fungsigetClientOriginalName itu mengunakan nama asli dari image
         $image->storeAs('public/category', $image->hashName());
+
+        //melakukan save to database
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'image' => $image->hashName()
+        ]);
+
+        //melakukan return redirect
+        return redirect()->route('category.index') ->with('success', 'category Berhasil di Buat');
     }
 
     /**

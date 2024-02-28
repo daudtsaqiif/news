@@ -8,7 +8,7 @@
                 {{-- route store --}}
                 {{-- untuk melakukan penambahan data --}}
                 {{-- untuk enctype melakukan input karena ada upload berupa file --}}
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                     {{-- csrf sebagai token autentifikasi --}}
                     @csrf
                     {{-- method jenis yang digunakan --}}
