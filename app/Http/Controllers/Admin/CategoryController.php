@@ -26,6 +26,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('home.category.create');
     }
 
     /**
@@ -36,7 +37,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //melakukan validasi data
+        $this->validate($request,[
+            'name' => 'required|max:100',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2-48'
+        ]);
+
+        //melakukan upload image
+        $image = $request->file('image');
+        //menyimpan image yang di upload ke folder
+        //storage/app/public/category
+        //fungsi hashName untuk generate nama yang unik
+        //fungsigetClientOriginalName itu mengunakan nama asli dari image
+        $image->storeAs('public/category', $image->hashName());
     }
 
     /**

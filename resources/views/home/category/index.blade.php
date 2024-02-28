@@ -6,7 +6,7 @@
             <h3>Category</h3>
 
             <div class="d-flex justify-content-end">
-                <a href="#" class="btn btn-primary">
+                <a href="{{ route('category.create') }}" class="btn btn-primary">
                     <i class="bi bi-plus"></i>
                     Create Catagory
                 </a>
