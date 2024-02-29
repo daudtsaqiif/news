@@ -7,7 +7,7 @@
             <h3>ini halaman edit</h3>
             <hr>
 
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="{{ route('category.update', $category->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 

@@ -108,17 +108,18 @@ class CategoryController extends Controller
         //
         $this->validate($request, [
             'name' => 'required|max:100',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'image' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
         //get data category by id
         $category = Category::find($id);
 
         //jika image kosong
-        if ($request->image == '') {
+        if ($request->file('image') == '') {
             $category->update([
                 'name' => $request->name,
-                'sulg' => Str::slug($request->name)
+                'slug' => Str::slug($request->name)
             ]);
+            
             return redirect()->route('category.index');
         } else {
             //jika gambarnya pengen di update hapus image lama
@@ -127,6 +128,15 @@ class CategoryController extends Controller
             //upload image baru
             $image = $request->file('image');
             $image->storeAs('public/category/', $image->hashName());
+
+            //update data
+            $category->update([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'image' => $image->hashName()
+            ]);
+            
+            return redirect()->route('category.index');
         }
     }
 
