@@ -31,7 +31,8 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('home.category.create');
+        $title = 'Category - Create';
+        return view('home.category.create', compact('title'));
     }
 
     /**
@@ -86,7 +87,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        //title halaman edit
+        $title = 'Category - Edit';
+
+        $category = Category::find($id);
+
+        return view('home.category.edit', compact('category', 'title'));
     }
 
     /**
@@ -99,6 +105,10 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'name' => 'required|max:100',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
     }
 
     /**
