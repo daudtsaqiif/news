@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -20,7 +21,7 @@ class CategoryController extends Controller
         $title = 'Category - index';
         //mengurutkan data berdasarkan data terbaru
         $category = Category::latest()->get();
-        return view('home.category.index', compact('category','title'));
+        return view('home.category.index', compact('category', 'title'));
     }
 
     /**
@@ -44,7 +45,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //melakukan validasi data
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required|max:100',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -65,7 +66,7 @@ class CategoryController extends Controller
         ]);
 
         //melakukan return redirect
-        return redirect()->route('category.index') ->with('success', 'category Berhasil di Buat');
+        return redirect()->route('category.index')->with('success', 'category Berhasil di Buat');
     }
 
     /**
@@ -105,10 +106,28 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required|max:100',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
+        //get data category by id
+        $category = Category::find($id);
+
+        //jika image kosong
+        if ($request->image == '') {
+            $category->update([
+                'name' => $request->name,
+                'sulg' => Str::slug($request->name)
+            ]);
+            return redirect()->route('category.index');
+        } else {
+            //jika gambarnya pengen di update hapus image lama
+            Storage::disk('local')->delete('public/category/' . basename($category->image));
+
+            //upload image baru
+            $image = $request->file('image');
+            $image->storeAs('public/category/', $image->hashName());
+        }
     }
 
     /**
