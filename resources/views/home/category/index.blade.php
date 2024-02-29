@@ -27,22 +27,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Kaskus</td>
-                                    <td>Kaskus</td>
-                                    <td><img src="" alt="ini gambar"></td>
-                                    <td><a href="#" class="btn btn-info">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-warning">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-danger">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                            {{-- menampilkan data dengan perulangan foreach dari category --}}
+
+                            @forelse (  as  )
+                                
+                            @empty
+                                <p>belum ada category, data masih kosong</p>
+                            @endforelse
                             </tbody>
                         </table>
                     </div>
