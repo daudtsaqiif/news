@@ -22,9 +22,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// //handel redirect register to login
+// Route::match(['get', 'post'], '/register', function(){ return redirect('/login');});
 
-//Route for News using Resource
-Route::resource('news', NewsController::class);
-//route for Category using Resource
-Route::resource('category', CategoryController::class)->middleware('auth');
+
+
+
+//route middleware
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    //route for admin
+    Route::middleware(['auth', 'admin'])->group(function () {
+        //Route for News using Resource
+        Route::resource('news', NewsController::class);
+        //route for Category using Resource
+        Route::resource('category', CategoryController::class);
+    });
+});
