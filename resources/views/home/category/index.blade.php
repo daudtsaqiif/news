@@ -19,7 +19,7 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>No</th>p
                                     <th>Name</th>
                                     <th>Slug</th>
                                     <th>Image</th>
