@@ -27,6 +27,8 @@ class NewsController extends Controller
     public function create()
     {
         //
+        $title = 'News - Create';
+        
     }
 
     /**
