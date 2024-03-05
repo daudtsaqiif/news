@@ -4,6 +4,15 @@
     <div class="container">
         <div class="row">
             <div class="card p-4">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <h3>Create category</h3>
                 {{-- route store --}}
                 {{-- untuk melakukan penambahan data --}}
@@ -16,7 +25,8 @@
 
                     <div class="col-12">
                         <label for="inputName" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" id="inputName" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control" id="inputName" name="name"
+                            value="{{ old('name') }}">
                     </div>
                     <div class="col-12">
                         <label for="inputImage" class="form-label">Category Image</label>

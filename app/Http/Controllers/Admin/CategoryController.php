@@ -59,14 +59,21 @@ class CategoryController extends Controller
         $image->storeAs('public/category', $image->hashName());
 
         //melakukan save to database
-        Category::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'image' => $image->hashName()
-        ]);
+        if (
+            Category::create([
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'image' => $image->hashName()
+            ])
+        ) {
+            return redirect()->route('category.index')->with('success', 'data Berhasil di Buat');
+        } else {
+            return redirect()->route('category.create')->with('error', 'Data Gagal Di buat');
+        }
+
 
         //melakukan return redirect
-        return redirect()->route('category.index')->with('success', 'category Berhasil di Buat');
+
     }
 
     /**
@@ -119,7 +126,7 @@ class CategoryController extends Controller
                 'name' => $request->name,
                 'slug' => Str::slug($request->name)
             ]);
-            
+
             return redirect()->route('category.index');
         } else {
             //jika gambarnya pengen di update hapus image lama
@@ -130,12 +137,13 @@ class CategoryController extends Controller
             $image->storeAs('public/category/', $image->hashName());
 
             //update data
+            
             $category->update([
                 'name' => $request->name,
                 'slug' => Str::slug($request->name),
                 'image' => $image->hashName()
             ]);
-            
+
             return redirect()->route('category.index');
         }
     }
@@ -153,7 +161,7 @@ class CategoryController extends Controller
 
         //delete image
         //basename itu untuk mengambil nama file
-        Storage::disk('local')->delete('public/category/'. basename($category->image));
+        Storage::disk('local')->delete('public/category/' . basename($category->image));
 
         //delete data by id
         $category->delete();

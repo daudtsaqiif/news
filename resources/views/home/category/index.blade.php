@@ -3,6 +3,13 @@
 @section('content')
     <div class="row">
         <div class="card p-4">
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <h3>Category</h3>
 
             <div class="d-flex justify-content-end">
@@ -38,7 +45,7 @@
                                         <td>{{ $row->slug }}</td>
                                         {{-- fungsi accessor image pada model category adalah untuk menampilkan image tanpa harus --}}
                                         <td><img src="{{ $row->image }}" alt="image" width="100"></td>
-                                        
+
                                         <td>
                                             {{-- show using modal with id {{ row->id }} --}}
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
