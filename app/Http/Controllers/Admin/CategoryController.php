@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         //title halaman index
-        $title = 'Category - index';
+        $title = 'Category - Index';
         //mengurutkan data berdasarkan data terbaru
         $category = Category::latest()->paginate(5);
         return view('home.category.index', compact('category', 'title'));
