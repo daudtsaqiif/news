@@ -45,28 +45,29 @@
                                         <td>{{ $row->slug }}</td>
                                         {{-- fungsi accessor image pada model category adalah untuk menampilkan image tanpa harus --}}
                                         <td><img src="{{ $row->image }}" alt="image" width="100"></td>
-
                                         <td>
-                                            {{-- show using modal with id {{ row->id }} --}}
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#basicModal{{ $row->id }}">
-                                                <i class="bi bi-eye"></i>
-                                            </button>
-                                            @include('home.category.include.modal-show')
-                                            {{-- button edit with route category.edit {{ row->id }} --}}
-                                            <a href="{{ route('category.edit', $row->id) }}" class="btn btn-warning"><i
-                                                    class="bi bi-pencil-square"></i></a>
-
-                                            {{-- button delete with route category.destory {{ $row->id }} --}}
-                                            <form action="{{ route('category.destroy', $row->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger d-inline">
-                                                    <i class="bi bi-trash"></i>
+                                            <div class="d-flex gap-2">
+                                                {{-- show using modal with id {{ row->id }} --}}
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#basicModal{{ $row->id }}">
+                                                    <i class="bi bi-eye"></i>
                                                 </button>
-                                            </form>
+                                                @include('home.category.include.modal-show')
+                                                {{-- button edit with route category.edit {{ row->id }} --}}
+                                                <a href="{{ route('category.edit', $row->id) }}" class="btn btn-warning"><i
+                                                        class="bi bi-pencil-square"></i></a>
+                                                {{-- button delete with route category.destory {{ $row->id }} --}}
+                                                <form action="{{ route('category.destroy', $row->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger d-inline">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
+
                                 @empty
                                     <p>belum ada category, data masih kosong</p>
                                 @endforelse
