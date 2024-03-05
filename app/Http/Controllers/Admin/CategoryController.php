@@ -121,13 +121,14 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         //jika image kosong
+        
         if ($request->file('image') == '') {
             $category->update([
                 'name' => $request->name,
                 'slug' => Str::slug($request->name)
             ]);
 
-            return redirect()->route('category.index');
+            return redirect()->route('category.index')->with('success', 'nama berhasil di update tanpa mengubah gambar');
         } else {
             //jika gambarnya pengen di update hapus image lama
             Storage::disk('local')->delete('public/category/' . basename($category->image));
@@ -144,7 +145,7 @@ class CategoryController extends Controller
                 'image' => $image->hashName()
             ]);
 
-            return redirect()->route('category.index');
+            return redirect()->route('category.index')->with('success', 'gambar/nama berhasil di update');
         }
     }
 
@@ -166,6 +167,6 @@ class CategoryController extends Controller
         //delete data by id
         $category->delete();
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('success', 'data Berhasil di hapus');
     }
 }

@@ -4,11 +4,11 @@
 @section('content')
     <div class="row">
         <div class="card p-4">
-            @if ($errors->any())
+            @if ($errors->any())`
                     <div class="alert alert-danger">
                         <ul class="mb-0">
                             @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <li><strong>{{ $error }}</strong></li>
                             @endforeach
                         </ul>
                     </div>
