@@ -19,6 +19,13 @@
                         <span>category</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{{ route('news.index') }}">
+                        <i class="bi bi-basket2"></i>
+                        <span>News</span>
+                    </a>
+                </li>
+                
             @else
             @endif
         </ul>

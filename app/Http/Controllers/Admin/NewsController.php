@@ -15,6 +15,8 @@ class NewsController extends Controller
     public function index()
     {
         //
+        $title = 'News - index';
+        return view('home.news.index', compact('title') );
     }
 
     /**
