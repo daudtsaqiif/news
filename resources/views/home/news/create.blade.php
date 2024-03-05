@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="mb-2">
-                    <label class="col-form-label">Select</label>
+                    <label class="col col-form-label">Select</label>
                     <div class="col ">
                         <select class="form-select" aria-label="Default select example" name="category_id">
                             <option selected>===== Choose Category =====</option>
@@ -33,12 +33,19 @@
                     </div>
                 </div>
 
-
                 {{-- field untuk  --}}
                 {{-- mengunakan ckeditor untuk menamilkan --}}
                 <div class="mb-2">
-                    <label class="col-form-label">Content News</label>
+                    <label class="col col-form-label">Content News</label>
                     <textarea name="content" id="editor"></textarea>
+                </div>
+
+                {{--  --}}
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-plus"></i>
+                        Create News
+                    </button>
                 </div>
                 
                 <script>
