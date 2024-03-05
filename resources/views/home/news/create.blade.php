@@ -22,23 +22,25 @@
                 </div>
 
                 <div class="mb-2">
-                    <label class="col-sm-2 col-form-label">Select</label>
-                    <div class="col-sm-10">
+                    <label class="col-form-label">Select</label>
+                    <div class="col ">
                         <select class="form-select" aria-label="Default select example" name="category_id">
-                            <option selected>Open this select menu</option>
-                            @foreach ($category as $row )
-                            <option value="{{ $row->id }}">{{ $row->name }}</option>
+                            <option selected>===== Choose Category =====</option>
+                            @foreach ($category as $row)
+                                <option value="{{ $row->id }}">{{ $row->name }}</option>
                             @endforeach
                         </select>
                     </div>
-    
                 </div>
+
 
                 {{-- field untuk  --}}
                 {{-- mengunakan ckeditor untuk menamilkan --}}
-                <div id="editor">
+                <div class="mb-2">
+                    <label class="col-form-label">Content News</label>
+                    <textarea name="content" id="editor"></textarea>
                 </div>
-
+                
                 <script>
                     ClassicEditor
                         .create(document.querySelector('#editor'))
