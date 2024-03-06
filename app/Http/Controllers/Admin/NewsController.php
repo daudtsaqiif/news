@@ -19,7 +19,12 @@ class NewsController extends Controller
     {
         //
         $title = 'News - Index';
-        return view('home.news.index', compact('title') );
+        
+        //get data terbaru dari table news/dari model news
+        $news = News::latest()->paginate(5);
+        $category = Category::all();
+        
+        return view('home.news.index', compact('title', 'news', 'category') );
     }
 
     /**
@@ -47,7 +52,7 @@ class NewsController extends Controller
         //
         $this->validate($request,[
             'title' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:900000',
             'content' =>'required',
             'category_id' => 'required',
         ]);
@@ -56,16 +61,18 @@ class NewsController extends Controller
         $image = $request->file('image');
         //fungsi untuk menyimpan image ke dalam folder public/news
         //fungsi hashName() untuk memberikan nama acak pada image
-        $image->storeAs('pubilc/news', $image->hashName());
+        $image->storeAs('public/news/', $image->hashName());
 
         //create data ke dalam table news
         News::create([
             'category_id' => $request->category_id,
             'title' => $request->title,
             'slug' => Str::slug($request->slug),
-            'image' => $request->hashName(),
+            'image' => $image->hashName(),
             'content' => $request->content
         ]);
+
+        return redirect()->route('news.index') ->with(['success' => 'News Berhasil di buat']);
     }
 
     /**
