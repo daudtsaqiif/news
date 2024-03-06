@@ -38,10 +38,10 @@
                                     <td>{{ $row->title }}</td>
                                     <td>{{ $row->category->name }}</td>
                                     <td>
-                                        <img src="{{ $row->image }}" alt="imgNews">
+                                        <img src="{{ $row->image }}" alt="imgNews" width="100">
                                     </td>
                                     <td>
-                                        <img src="{{ $row->category->image }}" alt="imgCategory" >
+                                        <img src="{{ $row->category->image }}" alt="imgCategory" width="100" >
                                     </td>
                                     <td>
                                         <button class="btn btn-info">
