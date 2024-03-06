@@ -49,6 +49,12 @@ class NewsController extends Controller
             'content' =>'required',
             'category_id' => 'required',
         ]);
+
+        //upload image
+        $image = $request->file('image');
+        //fungsi untuk menyimpan image ke dalam folder public/news
+        //fungsi hashname untuk memberikan nama acak pada image
+        $image->storeAs('pubilc/news', $image->hashName());
     }
 
     /**
