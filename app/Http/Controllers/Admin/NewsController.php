@@ -103,6 +103,11 @@ class NewsController extends Controller
     public function edit($id)
     {
         //
+        $news = News::findOrFail($id);
+        $category = Category::all();
+        $title = 'News - Edit';
+
+        return view('home.news.index', compact('title', 'category', 'news'));
     }
 
     /**
