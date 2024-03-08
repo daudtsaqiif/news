@@ -47,9 +47,9 @@
                                         <a href="{{ route('news.show', $row->id) }}" class="btn btn-info">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        <button class="btn btn-warning">
+                                        <a href="{{ route('news.edit', $row->id) }}" class="btn btn-warning">
                                             <i class="bi bi-pencil"></i>
-                                        </button>
+                                        </a>
                                         <button class="btn btn-danger">
                                             <i class="bi bi-trash"></i>
                                         </button>
