@@ -91,7 +91,7 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
 
 
-        return view('home.news.show', compact('title'));
+        return view('home.news.show', compact('title', 'news'));
     }
 
     /**
