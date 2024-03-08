@@ -41,12 +41,12 @@
                                         <img src="{{ $row->image }}" alt="imgNews" width="100">
                                     </td>
                                     <td>
-                                        <img src="{{ $row->category->image }}" alt="imgCategory" width="100" >
+                                        <img src="{{ $row->category->image }}" alt="imgCategory" width="100">
                                     </td>
                                     <td>
-                                        <button class="btn btn-info">
+                                        <a href="{{ route('news.show', $row->id) }}" class="btn btn-info">
                                             <i class="bi bi-eye"></i>
-                                        </button>
+                                        </a>
                                         <button class="btn btn-warning">
                                             <i class="bi bi-pencil"></i>
                                         </button>
@@ -62,6 +62,7 @@
                             </p>
                         @endforelse
                     </table>
+                    {{ $news->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

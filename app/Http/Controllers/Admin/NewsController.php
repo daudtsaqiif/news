@@ -84,6 +84,14 @@ class NewsController extends Controller
     public function show($id)
     {
         //
+        $title = 'News - Show';
+
+        //get data by id using model news
+        //fungsi dari findorfail adalah jika data tidak di teamukan maka akan menampilkan error
+        $news = News::findOrFail($id);
+
+
+        return view('home.news.show', compact('title'));
     }
 
     /**
