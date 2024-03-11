@@ -31,12 +31,13 @@ Auth::routes();
 //route middleware
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [App\Http\Controllers\Profile\ProfileController::class, 'index'])->name('profile.index');
 
     //route for admin
     Route::middleware(['auth', 'admin'])->group(function () {
         //Route for News using Resource
         Route::resource('news', NewsController::class);
         //route for Category using Resource
-        Route::resource('category', CategoryController::class);
+        Route::resource('category', CategoryController::class)->except('show');
     });
 });

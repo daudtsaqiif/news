@@ -32,8 +32,12 @@
                         <label for="inputImage" class="form-label">Category Image</label>
                         <input type="file" class="form-control" id="inputImage" name="image">
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary mt-2 ">
+                    <div class="d-flex justify-content-end mt-2">
+                        <a href="{{ route('category.index') }}" class="btn btn-primary">
+                            <i class="bi bi-arrow-left"></i>
+                            Back</a>
+                        
+                            <button type="submit" class="btn btn-primary ">
                             <i class="bi bi-plus"></i> Create Category
                         </button>
                     </div>
