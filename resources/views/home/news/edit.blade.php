@@ -44,13 +44,16 @@
                 </div>
 
                 {{--  --}}
-                <div class="d-flex justify-content-end">
-                    <button class="btn btn-warning" type="submit">
-                        <i class="bi bi-pencil"></i>
-                        update news
-                    </button>
+                <div class="d-flex justify-content-end mt-2 gap-2">
+                    <a href="{{ route('news.index') }}" class="btn btn-primary ">
+                        <i class="bi bi-arrow-left"></i>Back</a>
+                    
+                        <button class="btn btn-warning" type="submit">
+                            <i class="bi bi-pencil"></i>
+                            update news
+                        </button>
                 </div>
-                
+
                 <script>
                     ClassicEditor
                         .create(document.querySelector('#editor'))

@@ -4,14 +4,14 @@
     <div class="row">
         <div class="card p-4">
             @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <h3>News Create</h3>
 
             <form action="{{ route('news.store') }}" method="post" enctype="multipart/form-data">
@@ -56,6 +56,12 @@
                         <i class="bi bi-plus"></i>
                         Create News
                     </button>
+                </div> 
+                <div class="container">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('news.index') }}" class="btn btn-primary mt-3 ">
+                            <i class="bi bi-arrow-left"></i>Back</a>
+                    </div>
                 </div>
                 
                 <script>
@@ -68,6 +74,7 @@
                             console.error(error);
                         });
                 </script>
+                
             </form>
         </div>
     </div>
