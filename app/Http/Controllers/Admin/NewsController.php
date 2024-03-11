@@ -120,6 +120,12 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'category_id' => 'required',
+            'content' => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png|max:9000'
+        ]);
     }
 
     /**
