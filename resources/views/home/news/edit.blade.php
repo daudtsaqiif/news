@@ -4,7 +4,7 @@
     <div class="row">
         <div class="card p-4">
             <h3>News Update</h3>
-            <form action="{{ route('news.update', $row->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('news.update', $news->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -45,9 +45,9 @@
 
                 {{--  --}}
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-primary" type="submit">
-                        <i class="bi bi-plus"></i>
-                        Create News
+                    <button class="btn btn-warning" type="submit">
+                        <i class="bi bi-pencil"></i>
+                        update news
                     </button>
                 </div>
                 

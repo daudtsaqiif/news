@@ -107,7 +107,7 @@ class NewsController extends Controller
         $category = Category::all();
         $title = 'News - Edit';
 
-        return view('home.news.index', compact('title', 'category', 'news'));
+        return view('home.news.edit', compact('title', 'category', 'news'));
     }
 
     /**
