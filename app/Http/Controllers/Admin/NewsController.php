@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -136,6 +137,8 @@ class NewsController extends Controller
                 'category_id' => $request->category_id,
                 'content' => $request->content
             ]);
+        } else{
+            Storage::disk('local') ->delete('public/news/' . basename($news->image));
         }
     }
 
