@@ -9,6 +9,7 @@ class ProfileController extends Controller
 {
     //
     public function index(){
-        return view('home.profile.index');
+        $title = 'Profile - index';
+        return view('home.profile.index', compact('title'));
     }
 }
