@@ -138,7 +138,12 @@ class NewsController extends Controller
                 'content' => $request->content
             ]);
         } else{
+            //apus image lama
             Storage::disk('local') ->delete('public/news/' . basename($news->image));
+
+            //upload new image
+            $image = $request->file('image');
+            $image->storeAs('public/news', $image -> hashName());
         }
     }
 
