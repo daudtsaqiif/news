@@ -60,7 +60,7 @@
                                                 <form action="{{ route('category.destroy', $row->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="btn btn-danger d-inline">
+                                                    <button class="btn btn-danger d-inline" onclick="return confirm('yakin mau di apus')">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>

@@ -54,7 +54,7 @@
                                             <form action="{{ route('news.destroy', $row->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger d-inline" type="submit" onclick="retrun confirm('yakin mau di apus')">
+                                                <button class="btn btn-danger d-inline" type="submit" onclick="return confirm('yakin mau di apus')">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </form>
