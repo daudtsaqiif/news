@@ -126,6 +126,17 @@ class NewsController extends Controller
             'content' => 'required',
             'image' => 'image|mimes:jpeg,jpg,png|max:9000'
         ]);
+
+        $news = News::findOrFail($id);
+
+        if($request->file('inage') == ""){
+            $news->update([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title),
+                'category_id' => $request->category_id,
+                'content' => $request->content
+            ]);
+        }
     }
 
     /**
