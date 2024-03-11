@@ -144,7 +144,18 @@ class NewsController extends Controller
             //upload new image
             $image = $request->file('image');
             $image->storeAs('public/news', $image -> hashName());
+
+            //update data
+            $news->update([
+                'title' => $request->title,
+                'slug' => Str::slug($request->title),
+                'category_id' => $request->category_id,
+                'image' => $image->hashName(),
+                'content' => $request->content,
+            ]);
         }
+
+        return redirect()->route('news.index') ->with(['success' => 'News Berhasil di update']);
     }
 
     /**
