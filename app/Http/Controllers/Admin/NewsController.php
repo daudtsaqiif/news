@@ -65,15 +65,19 @@ class NewsController extends Controller
         $image->storeAs('public/news/', $image->hashName());
 
         //create data ke dalam table news
-        News::create([
-            'category_id' => $request->category_id,
-            'title' => $request->title,
-            'slug' => Str::slug($request->slug),
-            'image' => $image->hashName(),
-            'content' => $request->content
-        ]);
-
-        return redirect()->route('news.index') ->with(['success' => 'News Berhasil di buat']);
+        if(
+            News::create([
+                'category_id' => $request->category_id,
+                'title' => $request->title,
+                'slug' => Str::slug($request->slug),
+                'image' => $image->hashName(),
+                'content' => $request->content
+            ])
+        ){
+            return redirect()->route('news.index') ->with(['success' => 'News Berhasil di buat']);
+        }else{
+            return redirect()->route('news.create')->with('error');
+        }
     }
 
     /**
@@ -130,7 +134,7 @@ class NewsController extends Controller
 
         $news = News::findOrFail($id);
 
-        if($request->file('inage') == ""){
+        if($request->file('image') == ""){
             $news->update([
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
@@ -166,6 +170,15 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //get data by Id
+        $news = News::findOrFail($id);
+
+        //delet image
+        Storage::disk('local')->delete('public/news/' . basename($news->image));
+
+        $news->delete();
+
+        return redirect()->route('news.index')->with(['success' => 'News berhasil di hapus']);
+
     }
 }

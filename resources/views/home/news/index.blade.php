@@ -44,15 +44,21 @@
                                         <img src="{{ $row->category->image }}" alt="imgCategory" width="100">
                                     </td>
                                     <td>
-                                        <a href="{{ route('news.show', $row->id) }}" class="btn btn-info">
-                                            <i class="bi bi-eye"></i>
-                                        </a>
-                                        <a href="{{ route('news.edit', $row->id) }}" class="btn btn-warning">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                        <button class="btn btn-danger">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
+                                        <div class="d-flex gap-2">
+                                            <a href="{{ route('news.show', $row->id) }}" class="btn btn-info">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <a href="{{ route('news.edit', $row->id) }}" class="btn btn-warning">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <form action="{{ route('news.destroy', $row->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger d-inline" type="submit" onclick="retrun confirm('yakin mau di apus')">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
