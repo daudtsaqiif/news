@@ -30,7 +30,7 @@ class ProfileController extends Controller
 
         //check current password status
         $currentPasswordStatus = Hash::check(
-            $request->current_password, auth()->user()->password,
+            $request->current_password, auth()->user()->password
         );
 
         if($currentPasswordStatus){

@@ -12,14 +12,14 @@
         @endif
 
         @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -47,7 +47,7 @@
                 <div class="row mb-3">
                     <label for="inputPassword" class="col-sm-2 col-form-label">Confirmation Password</label>
                     <div class="col-sm-10">
-                        <input name="confrimation_password" type="password" class="form-control"
+                        <input name="confirmation_password" type="password" class="form-control"
                             placeholder="Confirmation Password">
                     </div>
                 </div>
