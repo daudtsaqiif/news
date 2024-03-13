@@ -12,6 +12,13 @@
             </li>
 
             @if (Auth::user()->role == 'admin')
+                {{-- ALL USER --}}
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <i class="bi bi-grid"></i>
+                        <span>user</span>
+                    </a>
+                </li>
                 {{-- cstegory & news --}}
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
@@ -32,7 +39,6 @@
                         </li>
                     </ul>
                 </li>
-                
             @else
             @endif
         </ul>
