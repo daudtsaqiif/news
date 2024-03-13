@@ -12,4 +12,8 @@ class ProfileController extends Controller
         $title = 'Profile - index';
         return view('home.profile.index', compact('title'));
     }
+
+    public function changePassword(){
+        
+    }
 }
