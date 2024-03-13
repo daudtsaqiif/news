@@ -22,10 +22,10 @@ class ProfileController extends Controller
 
     public function updatePassword(Request $request){
         //validate
-        $request->validate($request,[
+        $this->validate($request,[
             'current_password' => 'required',
-            'password' => 'required',
-            'confirmation_password' => 'required'
+            'password' => 'required|min:6',
+            'confirmation_password' => 'required|min:6'
         ]);
 
         //check current password status
@@ -43,7 +43,7 @@ class ProfileController extends Controller
                 $user->password = Hash::make($request->password);
                 $user->save();
 
-                return redirect()->back()->with('success', 'password has ben update');
+                return redirect()->back()->with('success', 'password has been update');
             } else{
                 return redirect()->back()->with('error', 'password does not mach');
             }

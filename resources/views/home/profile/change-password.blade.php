@@ -4,6 +4,13 @@
 @section('content')
 
     <div class="row">
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                <strong>{{ session('error') }}</strong>
+            </div>
+        @endif
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul class="mb-0">
@@ -22,7 +29,7 @@
 
         <div class="card p-4">
             <h3 class="card-title">Change Password</h3>
-            <form action="" method="post">
+            <form action="{{ route('profile.updatePassword') }}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="row mb-3">
