@@ -14,6 +14,8 @@ class ProfileController extends Controller
     }
 
     public function changePassword(){
-        
+        $title = 'Change - Password';
+
+        return view('home.profile.change-password', compact('title'));
     }
 }
