@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -51,5 +52,12 @@ class ProfileController extends Controller
             return redirect()->back()->with('error', 'Current password is worng');
         }
 
+    }
+
+    public function allUser(){
+        $title = 'All User';
+        $user = User::all();
+
+        return view('home.user.index', compact('title', 'user'));
     }
 }
