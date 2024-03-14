@@ -75,4 +75,15 @@ class ProfileController extends Controller
         
         return view('home.profile.create', compact('title'));
     }
+
+    public function storeProfile(Request $request){
+        //validate
+        $this->validate($request, [
+            'first_name' => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png|max:2048'
+        ]);
+        //storage image
+        $image = $request->file('image');
+        $image->storeAs('public/profile', $image->getClientOriginalName());
+    }
 }
