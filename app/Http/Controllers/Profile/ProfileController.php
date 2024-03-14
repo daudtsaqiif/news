@@ -69,4 +69,10 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('success', 'Password han been reset');
     }
+
+    public function createProfile(){
+        $title = 'Create - Profile';
+        
+        return view('home.profile.create', compact('title'));
+    }
 }
