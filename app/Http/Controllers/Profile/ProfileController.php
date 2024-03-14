@@ -62,6 +62,11 @@ class ProfileController extends Controller
     }
 
     public function resetPassword($id){
-        
+        //get user by id
+        $user = User::find($id);
+        $user->password = Hash::make('123456');
+        $user->save();
+
+        return redirect()->back()->with('success', 'Password han been reset');
     }
 }

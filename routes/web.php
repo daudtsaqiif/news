@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('category', CategoryController::class)->except('show');
         //get all user
         Route::get('all-user', [\App\Http\Controllers\Profile\ProfileController::class, 'allUser'])->name('allUser');
-
+        //reset password user
+        Route::put('/resrt-password/{id}');
     });
 });
