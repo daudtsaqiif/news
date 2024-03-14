@@ -85,5 +85,14 @@ class ProfileController extends Controller
         //storage image
         $image = $request->file('image');
         $image->storeAs('public/profile', $image->getClientOriginalName());
+
+        //get user login
+        $user = auth()->user();
+
+        //create data profil
+        $user->profile()->create([
+            'first_name' => $request->first_name,
+            'image' => $image->getClientOriginalName()
+        ]);
     }
 }
