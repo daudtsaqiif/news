@@ -56,7 +56,7 @@ class ProfileController extends Controller
 
     public function allUser(){
         $title = 'All User';
-        $user = User::all();
+        $user = User::where('role', 'user')->get();
 
         return view('home.user.index', compact('title', 'user'));
     }
