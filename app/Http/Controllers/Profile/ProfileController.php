@@ -60,4 +60,8 @@ class ProfileController extends Controller
 
         return view('home.user.index', compact('title', 'user'));
     }
+
+    public function resetPassword($id){
+        
+    }
 }
