@@ -8,7 +8,7 @@
                 Create Profile {{ Auth::user()->name }}
             </h3>
 
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="{{ route('storeProfile') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
                 <div class="col mb-3 mt-3">
