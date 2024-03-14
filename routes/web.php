@@ -44,6 +44,6 @@ Route::middleware('auth')->group(function () {
         //get all user
         Route::get('all-user', [\App\Http\Controllers\Profile\ProfileController::class, 'allUser'])->name('allUser');
         //reset password user
-        Route::put('/resrt-password/{id}');
+        Route::put('/resrt-password/{id}', [\App\Http\Controllers\Profile\ProfileController::class, 'resetPassword'])->name('resetPassword');
     });
 });
