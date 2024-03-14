@@ -18,7 +18,7 @@
                 <li class="list-group-item">E-Mail Account =<strong> {{ Auth::user()->email }}</strong></li>
                 <li class="list-group-item">Role Account = <strong> {{ Auth::user()->role }}</strong></li>
             </ul>
-            <a href="" class=" mt-3 btn btn-info">
+            <a href="{{ route('createProfile') }}" class=" mt-3 btn btn-info">
                 <i class="bi bi-plus"></i>
                 Create Photo Profile
             </a>
