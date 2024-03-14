@@ -94,5 +94,7 @@ class ProfileController extends Controller
             'first_name' => $request->first_name,
             'image' => $image->getClientOriginalName()
         ]);
+
+        return redirect()->route('profile.index')->with('success', 'Profile has been create ');
     }
 }

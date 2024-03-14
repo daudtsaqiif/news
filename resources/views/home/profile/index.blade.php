@@ -1,6 +1,12 @@
 @extends('home.parent')
 
 @section('content')
+@if (session('success'))
+<div class="alert alert-success">
+    <strong>{{ session('success') }}</strong>
+</div>
+@endif
+
 <div class="card p-4 ">
     <div class="row">
         <div class="col-md-6 d-flex justify-content-center">
