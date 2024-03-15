@@ -31,7 +31,7 @@
                 Create Photo Profile
             </a>
             @else
-                <a href="" class="btn btn-warning mt-3">
+                <a href="{{ route('editProfile') }}" class="btn btn-warning mt-3">
                     <i class="bi bi-pencil"></i>
                     Update Profile
                 </a>
