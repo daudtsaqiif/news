@@ -13,7 +13,7 @@
                 @method('POST')
                 <div class="col mb-3 mt-3">
                     <label for="" class="form-label">First Name</label>
-                    <input type="text" class="form-control" name="first_name" value="{{ $user->first_name }}">
+                    <input type="text" class="form-control" name="first_name" value="{{ $user->profile->first_name }}">
                 </div>
                 
                 <div class="col mb-3">

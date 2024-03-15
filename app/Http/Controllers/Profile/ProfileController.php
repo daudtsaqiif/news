@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -104,5 +105,39 @@ class ProfileController extends Controller
         $user = auth()->user();
 
         return view('home.profile.edit', compact('title', 'user'));
+    }
+
+    public function updateProfile(Request $request){
+        $this->validate($request, [
+            'first_name' => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png|max:2048'
+        ]);
+
+        //get user login
+        $user = auth()->user();
+
+        //cek kondisi image bioa tidak upload
+        if($request->file('image') == ''){
+            $user->profile->update([
+                'first_name' => $request->first_name
+            ]);
+
+            return redirect()->route('profile.index')->with('success', 'First Name berhasil di ganti');
+        }else{
+            //delete image
+            Storage::delete('public/profile' . basename($user->profile->image));
+
+            //storage image
+            $image = $request->file('image');
+            $image->storeAs('public/profile', $image->getClientOriginalName());
+
+            //update data
+            $user->profile->update([
+                'first_name' => $request->first_name,
+                'image' => $image->getClientOriginalName()
+            ]);
+
+            return redirect()->route('profile.index')->with('success', 'profile berhasil di update');
+        }
     }
 }
