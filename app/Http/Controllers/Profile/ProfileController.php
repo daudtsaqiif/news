@@ -125,7 +125,7 @@ class ProfileController extends Controller
             return redirect()->route('profile.index')->with('success', 'First Name berhasil di ganti');
         }else{
             //delete image
-            Storage::delete('public/profile' . basename($user->profile->image));
+            Storage::delete('public/profile/' . basename($user->profile->image));
 
             //storage image
             $image = $request->file('image');

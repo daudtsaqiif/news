@@ -8,9 +8,9 @@
                 Create Profile {{ Auth::user()->name }}
             </h3>
 
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="{{ route('updateProfile') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                @method('POST')
+                @method('PUT')
                 <div class="col mb-3 mt-3">
                     <label for="" class="form-label">First Name</label>
                     <input type="text" class="form-control" name="first_name" value="{{ $user->profile->first_name }}">
