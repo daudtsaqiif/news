@@ -24,6 +24,9 @@
                     <i class="bi bi-plus"></i>
                     Create Profile
                 </button>
+                <a href="{{ route('profile.index') }}" class="btn btn-primary">
+                    Back
+                    </a>
             </form>
 
         </div>
