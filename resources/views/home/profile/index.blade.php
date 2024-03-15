@@ -13,7 +13,7 @@
             @if (empty(Auth::user()->profile->image))
             <img class="w-75" src="https://ui-avatars.com/api/?background=random&name={{ Auth::user()->name }}" alt="ini nama user">
             @else
-                <img src="{{ Auth::user()->profile->image }}" alt="ini gambar profile">
+                <img class="w-75" src="{{ Auth::user()->profile->image }}" alt="ini gambar profile">
             @endif
         </div>
         
@@ -25,10 +25,17 @@
                 <li class="list-group-item">First Name =<strong> {{ Auth::user()->profile->first_name }}</strong></li>
                 <li class="list-group-item">Role Account = <strong> {{ Auth::user()->role }}</strong></li>
             </ul>
+            @if (empty(Auth::user()->profile->image))
             <a href="{{ route('createProfile') }}" class=" mt-3 btn btn-info">
                 <i class="bi bi-plus"></i>
                 Create Photo Profile
             </a>
+            @else
+                <a href="" class="btn btn-warning mt-3">
+                    <i class="bi bi-pencil"></i>
+                    Update Profile
+                </a>
+            @endif
         </div>
     </div>
     
