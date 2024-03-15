@@ -67,7 +67,6 @@
                                             </div>
                                         </td>
                                     </tr>
-
                                 @empty
                                     <p>belum ada category, data masih kosong</p>
                                 @endforelse

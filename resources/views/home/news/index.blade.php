@@ -31,8 +31,8 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        <tbody>
                         @forelse ($news as $row)
-                            <tbody>
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $row->title }}</td>
@@ -54,19 +54,20 @@
                                             <form action="{{ route('news.destroy', $row->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger d-inline" type="submit" onclick="return confirm('yakin mau di apus')">
+                                                <button class="btn btn-danger d-inline" type="submit"
+                                                    onclick="return confirm('yakin mau di apus')">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </form>
                                         </div>
                                     </td>
                                 </tr>
-                            </tbody>
-                        @empty
-                            <p class="text-center">
-                                ~data masih kosong~
-                            </p>
+                            @empty
+                                <p class="text-center">
+                                    ~data masih kosong~
+                                </p>
                         @endforelse
+                        </tbody>
                     </table>
                     {{ $news->links('pagination::bootstrap-5') }}
                 </div>
