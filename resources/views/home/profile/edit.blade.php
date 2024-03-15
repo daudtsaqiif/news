@@ -21,10 +21,14 @@
                     <input type="file" class="form-control" name="image">
                 </div>
 
-                <button type="submit" class="btn btn-warning">
+                <button type="submit" class="btn btn-success">
                     <i class="bi bi-plus"></i>
                     Update Profile
                 </button>
+
+                <a href="{{ route('profile.index') }}" class="btn btn-primary">
+                Back
+                </a>
             </form>
 
         </div>
