@@ -75,7 +75,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">a
+            <div class="col-md-3">
                 @foreach ($categoryNews as $row )
                     
                 @endforeach
