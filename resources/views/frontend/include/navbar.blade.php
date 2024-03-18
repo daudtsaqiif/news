@@ -6,37 +6,12 @@
             <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1>ZenBlog</h1>
         </a>
-
         <nav id="navbar" class="navbar">
-            <ul>
-                <li><a href="index.html">Blog</a></li>
-                <li><a href="single-post.html">Single Post</a></li>
-                <li class="dropdown"><a href="category.html"><span>Categories</span> <i
-                            class="bi bi-chevron-down dropdown-indicator"></i></a>
-                    <ul>
-                        <li><a href="search-result.html">Search Result</a></li>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                                    class="bi bi-chevron-down dropdown-indicator"></i></a>
-                            <ul>
-                                <li><a href="#">Deep Drop Down 1</a></li>
-                                <li><a href="#">Deep Drop Down 2</a></li>
-                                <li><a href="#">Deep Drop Down 3</a></li>
-                                <li><a href="#">Deep Drop Down 4</a></li>
-                                <li><a href="#">Deep Drop Down 5</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Drop Down 2</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-
-            </ul>
-
+            @foreach ($category as $row)
+                <ul>
+                    <li><a href="#">{{ $row->name }}</a></li>
+                </ul>
+            @endforeach
         </nav><!-- .navbar -->
 
         <div class="position-relative">
@@ -56,10 +31,10 @@
                 </form>
             </div><!-- End Search Form -->
             @guest
-            <a href="{{ route('login') }}" class="mx-2">Login</a>
-            <a href="{{ route('register') }}" class="mx-2">Register</a>
+                <a href="{{ route('login') }}" class="mx-2">Login</a>
+                <a href="{{ route('register') }}" class="mx-2">Register</a>
             @else
-            <a href="{{ route('home') }}" class="mx-2">Home🏡</a>
+                <a href="{{ route('home') }}" class="mx-2">Home🏡</a>
             @endguest
 
         </div>
