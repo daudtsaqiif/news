@@ -83,9 +83,10 @@
                                     <span
                                         class="mx-1">&bullet;</span> <span>{{ $news->created_at->format('d F Y') }}</span></div>
                                 <h2 class="mb-2"><a href="#">
-                                    {{ $news->title }}
+                                    {{-- limit karakter --}}
+                                    {{ Str::limit($news->title, 30) }}
                                 </a></h2>
-                                <span class="author mb-3 d-block">Jenny Wilson</span>
+                                <span class="author mb-3 d-block">Admin</span>
                             </div>
                         @endforeach
                     </div>
