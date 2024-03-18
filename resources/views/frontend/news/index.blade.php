@@ -84,32 +84,38 @@
 
                 <div class="row">
                     <div class="col-md-9">
-                        {{-- get the first news form the category  --}}
-                        {{-- fungsi take(1) untuk mengambil 1 data --}}
-                        @foreach ($row->news->take(1) as $news)
-                            <div class="d-lg-flex post-entry-2">
-                                <a href="#" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
-                                    <img src="{{ $news->image }}" class="img-fluid">
-                                </a>
-                                <div>
-                                    <div class="post-meta"><span class="date">{{ $row->name }}</span> <span
-                                            class="mx-1">&bullet;</span>
-                                        <span>{{ $news->created_at->diffForHumans() }}</span>
-                                    </div>
-                                    <h3><a href="#">{{ $news->title }}</a></h3>
-                                    <p>
-                                        {{ Str::limit(strip_tags($news->content, 100)) }}
-                                    </p>
-                                    <div class="d-flex align-items-center author">
-                                        <div class="photo"><img src="{{ asset('zen/assets/img/person-2.jpg') }}"
-                                                alt="" class="img-fluid"></div>
-                                        <div class="name">
-                                            <h3 class="m-0 p-0">Wade Warren</h3>
-                                        </div>
+
+                        @php
+                            $latestNews = \App\Models\News::where('category_id', $row->id)->latest()->take(1)->get();
+                        @endphp
+                        
+                        @foreach ($latestNews as $news )
+                        <div class="d-lg-flex post-entry-2">
+                            <a href="#" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+                                <img src="{{ $news->image }}" class="img-fluid">
+                            </a>
+                            <div>
+                                <div class="post-meta"><span class="date">{{ $row->name }}</span> <span
+                                        class="mx-1">&bullet;</span>
+                                    <span>{{ $news->created_at->diffForHumans() }}</span>
+                                </div>
+                                <h3><a href="#">{{ $news->title }}</a></h3>
+                                <p>
+                                    {{ Str::limit(strip_tags($news->content, 100)) }}
+                                </p>
+                                <div class="d-flex align-items-center author">
+                                    <div class="photo"><img src="{{ asset('zen/assets/img/person-2.jpg') }}"
+                                            alt="" class="img-fluid"></div>
+                                    <div class="name">
+                                        <h3 class="m-0 p-0">Wade Warren</h3>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
+
+                        {{-- get the first news form the category  --}}
+                        {{-- fungsi take(1) untuk mengambil 1 data --}}
 
                         <div class="row">
                             {{-- fungsi random mengambil berita secara acak --}}
