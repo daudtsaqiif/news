@@ -92,8 +92,7 @@
                                                 class="mx-1">&bullet;</span> <span>{{ $news->created_at->diffForHumans() }}</span></div>
                                         <h2 class="mb-2"><a href="single-post.html">{{ $news->title }}</a></h2>
                                         <span class="author mb-3 d-block">Admin</span>
-                                        <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                            Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
+                                        <p class="mb-4 d-block">  {{ Str::limit(strip_tags($news->content, 100)) }}</p>
                                     </div>
                                     
                                     <div class="post-entry-1">
@@ -104,30 +103,26 @@
                                         <span class="author mb-3 d-block">Jenny Wilson</span>
                                     </div>
                                 </div>
-                            @endforeach
-
-                            <div class="col-lg-8">
-                                <div class="post-entry-1">
-                                    <a href="single-post.html"><img
-                                            src="{{ asset('zen/assets/img/post-landscape-2.jpg') }}" alt=""
-                                            class="img-fluid"></a>
-                                    <div class="post-meta"><span class="date">Culture</span> <span
-                                            class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                    <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay
-                                            Focused During Video Calls?</a></h2>
-                                    <span class="author mb-3 d-block">Jenny Wilson</span>
-                                    <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                                        Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
+                                <div class="col-lg-8">
+                                    <div class="post-entry-1">
+                                        <a href="single-post.html"><img
+                                                src="{{ $news->image }}" alt=""
+                                                class="img-fluid"></a>
+                                        <div class="post-meta"><span class="date">{{ $row->name }}</span> <span
+                                                class="mx-1">&bullet;</span> <span>{{ $news->created_at->diffForHumans() }}</span></div>
+                                        <h2 class="mb-2"><a href="single-post.html">{{ $news->title }}</a></h2>
+                                        <span class="author mb-3 d-block">Admin</span>
+                                        <p class="mb-4 d-block"> {{ Str::limit(strip_tags($news->content, 100)) }}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-
                     </div>
 
                     <div class="col-md-3">
 
                         @php
-                            $sideNews = \App\Models\News::where('category_id', $row->id)->latest()->take(4)->get();
+                            $sideNews = \App\Models\News::where('category_id', $row->id)->latest()->take(10)->get();
                         @endphp
 
                         @foreach ($sideNews as $news)
@@ -146,6 +141,7 @@
                             </div>
                         @endforeach
                     </div>
+                
                 </div>
             </div>
         </section>
