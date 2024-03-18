@@ -77,9 +77,12 @@
                     <div class="col-md-3">
                         @foreach ($row->news as $news)
                             <div class="post-entry-1 border-bottom">
-                                <div class="post-meta"><span class="date">Culture</span> <span
-                                        class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                                <h2 class="mb-2"><a href="single-post.html">
+                                <div class="post-meta"><span class="date">{{ $row->name }}</span>
+                                    {{-- fungsi diffForHumans() untuk menampilkan waktu dalam bentuk last hour/days --}}
+                                    {{-- fungsi format ('d F Y')  menampilkan hari bulan tahun--}}
+                                    <span
+                                        class="mx-1">&bullet;</span> <span>{{ $news->created_at->format('d F Y') }}</span></div>
+                                <h2 class="mb-2"><a href="#">
                                     {{ $news->title }}
                                 </a></h2>
                                 <span class="author mb-3 d-block">Jenny Wilson</span>
