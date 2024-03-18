@@ -7,58 +7,18 @@
                 <div class="col-12">
                     <div class="swiper sliderFeaturedPosts">
                         <div class="swiper-wrapper">
+                            @foreach ($sliderNews as $row)
                             <div class="swiper-slide">
                                 <a href="single-post.html" class="img-bg d-flex align-items-end"
-                                    style="background-image: url('{{ asset('zen/assets/img/post-slide-1.jpg') }}');">
+                                    style="background-image: url('{{ $row->image }}');">
                                     <div class="img-bg-inner">
-                                        <h2>The Best Homemade Masks for Face (keep the Pimples Away)</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque
-                                            est mollitia! Beatae minima assumenda repellat harum vero, officiis
-                                            ipsam magnam obcaecati cumque maxime inventore repudiandae quidem
-                                            necessitatibus rem atque.</p>
+                                        <h2>{{ $row->title }}</h2>
+                                        <p>{{ Str::limit(strip_tags($row->content, 50)) }}</p>
                                     </div>
                                 </a>
                             </div>
-
-                            <div class="swiper-slide">
-                                <a href="single-post.html" class="img-bg d-flex align-items-end"
-                                    style="background-image: url('{{ asset('zen/assets/img/post-slide-2.jpg') }}');">
-                                    <div class="img-bg-inner">
-                                        <h2>17 Pictures of Medium Length Hair in Layers That Will Inspire Your New
-                                            Haircut</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque
-                                            est mollitia! Beatae minima assumenda repellat harum vero, officiis
-                                            ipsam magnam obcaecati cumque maxime inventore repudiandae quidem
-                                            necessitatibus rem atque.</p>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <a href="single-post.html" class="img-bg d-flex align-items-end"
-                                    style="background-image: url('{{ asset('zen/assets/img/post-slide-3.jpg') }}');">
-                                    <div class="img-bg-inner">
-                                        <h2>13 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque
-                                            est mollitia! Beatae minima assumenda repellat harum vero, officiis
-                                            ipsam magnam obcaecati cumque maxime inventore repudiandae quidem
-                                            necessitatibus rem atque.</p>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <a href="single-post.html" class="img-bg d-flex align-items-end"
-                                    style="background-image: url('{{ asset('zen/assets/img/post-slide-4.jpg') }}');">
-                                    <div class="img-bg-inner">
-                                        <h2>9 Half-up/half-down Hairstyles for Long and Medium Hair</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque
-                                            est mollitia! Beatae minima assumenda repellat harum vero, officiis
-                                            ipsam magnam obcaecati cumque maxime inventore repudiandae quidem
-                                            necessitatibus rem atque.</p>
-                                    </div>
-                                </a>
-                            </div>
+                            @endforeach
+                            
                         </div>
                         <div class="custom-swiper-button-next">
                             <span class="bi-chevron-right"></span>
@@ -73,6 +33,7 @@
             </div>
         </div>
     </section>
+
     @foreach ($category as $row)
         <section class="category-section">
             <div class="container" data-aos="fade-up">
@@ -86,32 +47,35 @@
                     <div class="col-md-9">
 
                         @php
-                            $latestNews = \App\Models\News::where('category_id', $row->id)->latest()->take(1)->get();
+                            $latestNews = \App\Models\News::where('category_id', $row->id)
+                                ->latest()
+                                ->take(1)
+                                ->get();
                         @endphp
-                        
-                        @foreach ($latestNews as $news )
-                        <div class="d-lg-flex post-entry-2">
-                            <a href="#" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
-                                <img src="{{ $news->image }}" class="img-fluid">
-                            </a>
-                            <div>
-                                <div class="post-meta"><span class="date">{{ $row->name }}</span> <span
-                                        class="mx-1">&bullet;</span>
-                                    <span>{{ $news->created_at->diffForHumans() }}</span>
-                                </div>
-                                <h3><a href="#">{{ $news->title }}</a></h3>
-                                <p>
-                                    {{ Str::limit(strip_tags($news->content, 100)) }}
-                                </p>
-                                <div class="d-flex align-items-center author">
-                                    <div class="photo"><img src="{{ asset('zen/assets/img/person-2.jpg') }}"
-                                            alt="" class="img-fluid"></div>
-                                    <div class="name">
-                                        <h3 class="m-0 p-0">Wade Warren</h3>
+
+                        @foreach ($latestNews as $news)
+                            <div class="d-lg-flex post-entry-2">
+                                <a href="#" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+                                    <img src="{{ $news->image }}" class="img-fluid">
+                                </a>
+                                <div>
+                                    <div class="post-meta"><span class="date">{{ $row->name }}</span> <span
+                                            class="mx-1">&bullet;</span>
+                                        <span>{{ $news->created_at->diffForHumans() }}</span>
+                                    </div>
+                                    <h3><a href="#">{{ $news->title }}</a></h3>
+                                    <p>
+                                        {{ Str::limit(strip_tags($news->content, 100)) }}
+                                    </p>
+                                    <div class="d-flex align-items-center author">
+                                        <div class="photo"><img src="{{ asset('zen/assets/img/person-2.jpg') }}"
+                                                alt="" class="img-fluid"></div>
+                                        <div class="name">
+                                            <h3 class="m-0 p-0">Wade Warren</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
 
                         {{-- get the first news form the category  --}}
@@ -125,9 +89,9 @@
                                         <a href="#"><img src="{{ $news->image }}" alt=""
                                                 class="img-fluid"></a>
                                         <div class="post-meta"><span class="date">{{ $row->name }}</span> <span
-                                                class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                                                class="mx-1">&bullet;</span> <span>{{ $news->created_at->diffForHumans() }}</span></div>
                                         <h2 class="mb-2"><a href="single-post.html">{{ $news->title }}</a></h2>
-                                        <span class="author mb-3 d-block">Jenny Wilson</span>
+                                        <span class="author mb-3 d-block">Admin</span>
                                         <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                             Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
                                     </div>
@@ -160,6 +124,7 @@
                     </div>
 
                     <div class="col-md-3">
+
                         @foreach ($row->news as $news)
                             <div class="post-entry-1 border-bottom">
                                 <div class="post-meta"><span class="date">{{ $row->name }}</span>
