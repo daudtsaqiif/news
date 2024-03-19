@@ -69,7 +69,7 @@ class NewsController extends Controller
             News::create([
                 'category_id' => $request->category_id,
                 'title' => $request->title,
-                'slug' => Str::slug($request->slug),
+                'slug' => Str::slug($request->title),
                 'image' => $image->hashName(),
                 'content' => $request->content
             ])

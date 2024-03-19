@@ -65,7 +65,7 @@
                                     </div>
                                     <h3><a href="{{ route('detailNews', $news->slug) }}">{{ $news->title }}</a></h3>
                                     <p>
-                                        {{ Str::limit(strip_tags($news->content, 100)) }}
+                                        {{ Str::limit(strip_tags($news->content, 50)) }}
                                     </p>
                                     <div class="d-flex align-items-center author">
                                         <div class="photo"><img src="{{ asset('zen/assets/img/person-2.jpg') }}"
