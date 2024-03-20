@@ -30,9 +30,8 @@ class FrontendController extends Controller
         //data news by slug
         $news = News::where('slug', $slug)->first();
         
-        $allCategory = News::get();
 
-        return view('frontend.news.detail', compact('category', 'news', 'allCategory'));
+        return view('frontend.news.detail', compact('category', 'news'));
     }
 
     public function detailCategory($slug){
