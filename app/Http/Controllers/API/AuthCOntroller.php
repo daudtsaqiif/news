@@ -16,6 +16,9 @@ class AuthCOntroller extends Controller
                 'email' => 'required|email',
                 'password' => 'required'
             ]);
+
+            //cek credentials (login)
+            $credentials = request(['email', 'password']);
         }catch (Exception $error){
 
         }
