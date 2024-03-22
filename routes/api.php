@@ -30,3 +30,7 @@ Route::get('/allUsers', [App\Http\Controllers\API\AuthCOntroller::class, 'allUse
 Route::get('/allNews', [App\Http\Controllers\API\NewsController::class, 'index']);
 //get data news by id
 Route::get('/news/{id}', [App\Http\Controllers\API\NewsController::class, 'show']);
+
+Route::get('/allCategory', [App\Http\Controllers\API\CategoryController::class, 'index']);
+Route::get('/category/{id}', [App\Http\Controllers\API\CategoryController::class, 'show']);
+
