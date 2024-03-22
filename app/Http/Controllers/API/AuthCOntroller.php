@@ -105,4 +105,10 @@ class AuthCOntroller extends Controller
             $token, 'Token Revoked'
         ], 'Token Revoked', 200);
     }
+    public function getAllUser(){
+        $user = User::where('role', 'user')->get();
+        return ResponseFormatter::success(
+            $user, 'Data user berhasil diambil'
+        );
+    }
 }
