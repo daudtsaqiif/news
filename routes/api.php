@@ -33,4 +33,6 @@ Route::get('/news/{id}', [App\Http\Controllers\API\NewsController::class, 'show'
 
 Route::get('/allCategory', [App\Http\Controllers\API\CategoryController::class, 'index']);
 Route::get('/category/{id}', [App\Http\Controllers\API\CategoryController::class, 'show']);
+Route::get('/carousel', [App\Http\Controllers\API\FrontEndController::class, 'index']);
+
 

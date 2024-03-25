@@ -111,4 +111,42 @@ class AuthCOntroller extends Controller
             $user, 'Data user berhasil diambil'
         );
     }
+    public function UpdatePassword(Request $request){
+        try {
+            $this->request($request, [
+                'old_password' => 'required',
+                'new_password' => 'required|string|min:6',
+                'confirm_password'=> 'required|string|min:6'
+            ]);
+
+            //get data user
+            $user = Auth::user();
+
+            //cek pw
+            if (!Hash::check($request->old_password, $user->password)) {
+                return ResponseFormatter::error([
+                    'massage' => 'Password lama tidak sesuai',
+                ],'Authentication Failed', 401);
+            }
+
+            if ($request->new_password != $request->confirm_password) {
+                return ResponseFormatter::error([
+                    'massage' => 'Password lama tidak sesuai',
+                ],'Authentication Failed', 401);
+            }
+
+            //update password
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+
+            return ResponseFormatter::success([
+                'massage' => 'password berhasil di update'
+            ], 'Authenticated', 200);
+        } catch (\Exception $error) {
+            return ResponseFormatter::error([
+                'massage' => 'Something went worng',
+                'error' =>$error
+            ], 'Authentication Failed', 500);
+        }
+    }
 }
