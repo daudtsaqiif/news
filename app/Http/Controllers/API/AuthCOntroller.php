@@ -111,9 +111,9 @@ class AuthCOntroller extends Controller
             $user, 'Data user berhasil diambil'
         );
     }
-    public function UpdatePassword(Request $request){
+    public function updatePassword(Request $request){
         try {
-            $this->request($request, [
+            $this->validate($request, [
                 'old_password' => 'required',
                 'new_password' => 'required|string|min:6',
                 'confirm_password'=> 'required|string|min:6'
@@ -131,7 +131,7 @@ class AuthCOntroller extends Controller
 
             if ($request->new_password != $request->confirm_password) {
                 return ResponseFormatter::error([
-                    'massage' => 'Password lama tidak sesuai',
+                    'massage' => 'Password baru tidak sama',
                 ],'Authentication Failed', 401);
             }
 
@@ -144,7 +144,7 @@ class AuthCOntroller extends Controller
             ], 'Authenticated', 200);
         } catch (\Exception $error) {
             return ResponseFormatter::error([
-                'massage' => 'Something went worng',
+                'massage' => 'password kurang dari 6',
                 'error' =>$error
             ], 'Authentication Failed', 500);
         }
