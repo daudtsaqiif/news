@@ -76,7 +76,7 @@ class CategoryController extends Controller
     {
         try {
             $this->validate($request, [
-                'name' => 'required|unique:categories',
+                'name' => 'required',
                 'image' => 'image|mimes:jpg,png,jpeg'
             ]);
 
@@ -110,10 +110,33 @@ class CategoryController extends Controller
                 $category,
                 'data category berhasil di update'
             ]);
-            
+
         } catch (\Exception $error) {
             return ResponseFormatter::error([
                 'massage' => 'Something went wrong',
+                'error' => $error
+            ], 'Authentication Failed', 500);
+        }
+    }
+
+    public function destroy($id){
+        try {
+            //get data by id
+            $category = Category::findOrFail($id);
+            //delet image
+            Storage::disk('local')->delete('public/category' . basename($category->image));
+
+            //delet data
+            $category->delete();
+
+            return ResponseFormatter::success([
+                null,
+                'data category berhasil dihapus'
+            ]);
+
+        } catch (\Exception $error) {
+            return ResponseFormatter::error([
+                'massage' => 'something went worng',
                 'error' => $error
             ], 'Authentication Failed', 500);
         }
