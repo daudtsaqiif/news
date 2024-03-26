@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Category;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -34,6 +35,36 @@ class CategoryController extends Controller
         } catch (\Exception $error) {
             return ResponseFormatter::error([
                 'massage' => 'Something went worng',
+                'error' => $error
+            ], 'Authentication Failed', 500);
+        }
+    }
+    public function store(Request $request){
+        try {
+        $this->validate($request, [
+            'name' => 'required|unique:categories',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:9000'
+        ]);
+
+        //store image
+        $image = $request->file('image');
+        $image->storeAs('public/category', $image->hashName());
+
+        //store data
+        $category = Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'image' => $image->hashName()
+        ]);
+
+        return ResponseFormatter::success(
+            $category,
+            'Data category Berhasil Ditambah'
+        );
+
+        } catch (\Exception $error) {
+            return ResponseFormatter::error([
+                'massage' => 'something went worng',
                 'error' => $error
             ], 'Authentication Failed', 500);
         }

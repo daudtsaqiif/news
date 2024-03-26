@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
 
     //Route Admin
 Route::group(['middelware' => ['auth:sanctum', 'admin']], function(){
-    
+    Route::post('/category/create', [App\Http\Controllers\API\CategoryController::class, 'store']);
 });
 
 
