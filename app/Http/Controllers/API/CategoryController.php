@@ -69,4 +69,17 @@ class CategoryController extends Controller
             ], 'Authentication Failed', 500);
         }
     }
+    public function update(Request $request, $id){
+        try {
+            $this->validate($request, [
+                'name' => 'required|unique:categories',
+                'image' => 'image|mimes:jpg,png,jpeg'
+            ]);
+        } catch (\Exception $error) {
+            return ResponseFormatter::error([
+                'massage' => 'Something went wrong',
+                'error' => $error
+            ],'Authentication Failed', 500 );
+        }
+    }
 }
