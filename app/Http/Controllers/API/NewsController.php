@@ -37,5 +37,15 @@ class NewsController extends Controller
             ], 'Authentication Failed', 500);
         }
     }
+    public function store(Request $request){
+        try {
+            //code...
+        } catch (\Exception $error) {
+            return ResponseFormatter::error([
+                'massage' => 'something went worng',
+                'error' => $error
+            ], 'Authentication Failed', 500);
+        }
+    }
 
 }
