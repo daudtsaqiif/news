@@ -153,6 +153,30 @@ class AuthCOntroller extends Controller
     public function storeProfile(Request $request){
         try {
             //validate
+            $this->validate($request, [
+                'first_name' => 'required',
+                'image' => 'required|image|mimes:jpg,png,jpeg|max:9000',
+            ]);
+
+            //get data usrr
+            $user = auth()->user();
+
+            //upload image
+            $image = $request->file('image'); 
+            $image->storeAs('public/profile', $image->hashName());
+
+            //create profile
+            $user->profile()->create([
+                'first_name' => $request->first_name,
+                'image' => $image->hashName()
+            ]);
+
+            $profile = $user->profile;
+
+            return ResponseFormatter::success([
+                $profile,
+                'Profile berhasil di update'
+            ]);
 
         } catch (\Exception $error) {
             return ResponseFormatter::error([
