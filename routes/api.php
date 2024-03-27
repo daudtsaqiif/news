@@ -33,6 +33,8 @@ Route::group(['middelware' => ['auth:sanctum', 'admin']], function(){
 
     //route News
     Route::post('/news/create', [App\Http\Controllers\API\NewsController::class, 'store']);
+    Route::delete('/news/destory/{id}', [App\Http\Controllers\API\NewsController::class, 'destroy']);
+    Route::post('/news/update/{id}', [App\Http\Controllers\API\NewsController::class, 'update']);
 });
 
 
