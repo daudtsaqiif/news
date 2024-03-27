@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::post('/logout', [App\Http\Controllers\API\AuthCOntroller::class, 'logout']);
     Route::post('/updatePassword', [App\Http\Controllers\API\AuthCOntroller::class, 'updatePassword']);
+    Route::post('/storeProfile', [App\Http\Controllers\API\AuthCOntroller::class, 'storeProfile']);
 
 });
 

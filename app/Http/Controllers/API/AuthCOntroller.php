@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
+use Exception;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthCOntroller extends Controller
 {
@@ -146,6 +147,17 @@ class AuthCOntroller extends Controller
             return ResponseFormatter::error([
                 'massage' => 'password kurang dari 6',
                 'error' =>$error
+            ], 'Authentication Failed', 500);
+        }
+    }
+    public function storeProfile(Request $request){
+        try {
+            //validate
+
+        } catch (\Exception $error) {
+            return ResponseFormatter::error([
+                'massage' => 'Something went worng',
+                'error' => $error
             ], 'Authentication Failed', 500);
         }
     }
