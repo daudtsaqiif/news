@@ -185,4 +185,48 @@ class AuthCOntroller extends Controller
             ], 'Authentication Failed', 500);
         }
     }
+    public function updateProfile(Request $request)
+    {
+        try {
+            $this->validate($request, [
+                'first_name' => 'required',
+                'image' => 'image|mimes:jpg,jpeg,png|max:2048'
+            ]);
+
+            // get usr login
+            $user = auth()->user();
+
+            // if (!$user->profile){
+            //     return ResponseFormatter::error([
+            //         'massage' => 'profile not found, please create profile first'
+            //     ], 'Authentication Failed', 404);
+            // }
+
+            // cek kondisi image klo ga di upload
+            if ($request->file('image') == '') {
+                $user->profile->update([
+                    'first_name' => $request->first_name
+                ]);
+            } else {
+                // delete image
+                Storage::delete('public/profile' . basename($user->profile->image));
+
+                //  upload gambar baru 
+                $image = $request->file('image');
+                $image->storeAs('public/profile', $image->hashName());
+
+                // update image
+                $user->profile->update([
+                    'first_name' => $request->first_name,
+                    'image'      => $image->hashName()
+                ]);
+            }
+            return ResponseFormatter::success($user, 'Profile has been update');
+        } catch (\Exception $error) {
+            return ResponseFormatter::error([
+                'message' => 'profile not found, please create profile first',
+                'error' => $error,
+            ], 'Authentication Failed', 500);
+        }
+    }
 }
