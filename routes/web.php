@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NewsController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -50,3 +51,13 @@ Route::middleware('auth')->group(function () {
         Route::put('/resrt-password/{id}', [\App\Http\Controllers\Profile\ProfileController::class, 'resetPassword'])->name('resetPassword');
     });
 });
+
+
+//storage link
+Route::get('/storage-link', function(){
+    Artisan::call('storage:link');
+    return 'success';
+});
+
+//config:cache
+Route::get('config-cache');
