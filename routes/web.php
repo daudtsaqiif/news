@@ -58,6 +58,32 @@ Route::get('/storage-link', function(){
     Artisan::call('storage:link');
     return 'success';
 });
-
 //config:cache
-Route::get('config-cache');
+Route::get('/config-cache', function(){
+    Artisan::call('config:cache');
+    return 'config:cache berhasil dijalankan';
+});
+
+//config:clear
+Route::get('/config-clear', function(){
+    Artisan::call('config:clear');
+    return 'config:clear berhasil dijalankan';
+});
+
+//view:clear
+Route::get('/view-clear', function(){
+    Artisan::call('view:clear');
+    return 'view:clear berhasil dijalankan';
+});
+
+//view:cache
+Route::get('/view-cache', function(){
+    Artisan::call('view:cache');
+    return 'view:cache berhasil dijalankan';
+});
+
+//route:clear
+Route::get('/route-clear', function(){
+    Artisan::call('route:clear');
+    return 'route:clear berhasil dijalankan';
+});
