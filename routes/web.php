@@ -87,3 +87,8 @@ Route::get('/route-clear', function(){
     Artisan::call('route:clear');
     return 'route:clear berhasil dijalankan';
 });
+
+Route::get('/route-cache', function(){
+    Artisan::call('route:cache');
+    return 'route:cache berhasil dijalankan';
+});
